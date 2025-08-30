@@ -72,7 +72,7 @@ const ContactList = () => {
   return (
     <div className="app-container">
       <div className="main-container">
-        {/* Header */}
+
         <div className="header">
           <div className="header-content">
             <h1 className="header-title">All Contacts</h1>
@@ -96,14 +96,12 @@ const ContactList = () => {
           </div>
         </div>
 
-        {/* Search Bar */}
         {showSearch && (
           <div className="search-container">
             <SearchBar onSearch={handleSearch} />
           </div>
         )}
 
-        {/* Contact List */}
         <div className="contact-list">
           {contacts.length === 0 ? (
             <div className="empty-state">
@@ -126,7 +124,7 @@ const ContactList = () => {
         </div>
       </div>
 
-      {/* Modals */}
+
       <AddContactModal
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}

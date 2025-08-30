@@ -27,16 +27,15 @@ export const useContacts = () => {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Fetch contacts from API
+
   const fetchContacts = async () => {
-    // First check if we have contacts in localStorage
+
     const storedContacts = loadFromStorage();
     if (storedContacts && storedContacts.length > 0) {
       setContacts(storedContacts);
       return;
     }
 
-    // If no stored contacts, fetch from API
     setLoading(true);
     setError(null);
     try {
@@ -54,7 +53,7 @@ export const useContacts = () => {
     }
   };
 
-  // Add new contact
+
   const addContact = (contactData) => {
     const newContact = {
       ...contactData,
@@ -65,7 +64,7 @@ export const useContacts = () => {
     saveToStorage(updatedContacts);
   };
 
-  // Update existing contact
+
   const updateContact = (updatedContact) => {
     const updatedContacts = contacts.map(contact => 
         contact.id === updatedContact.id ? updatedContact : contact
@@ -74,14 +73,13 @@ export const useContacts = () => {
     saveToStorage(updatedContacts);
   };
 
-  // Delete contact
+
   const deleteContact = (contactId) => {
     const updatedContacts = contacts.filter(contact => contact.id !== contactId);
     setContacts(updatedContacts);
     saveToStorage(updatedContacts);
   };
 
-  // Filter contacts based on search term
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     contact.mobile.includes(searchTerm)

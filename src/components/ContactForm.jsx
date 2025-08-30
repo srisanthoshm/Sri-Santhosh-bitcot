@@ -12,13 +12,11 @@ const ContactForm = ({
     mobile: '',
     address: '',
   });
-
   const [errors, setErrors] = useState({
     name: '',
     email: '',
     mobile: '',
   });
-
   useEffect(() => {
     if (initialData) {
       setFormData({
@@ -37,14 +35,12 @@ const ContactForm = ({
       mobile: '',
     };
 
-    // Name validation
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
     } else if (formData.name.trim().length < 2) {
       newErrors.name = 'Name must be at least 2 characters';
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
@@ -52,7 +48,6 @@ const ContactForm = ({
       newErrors.email = 'Please enter a valid email address';
     }
 
-    // Mobile validation
     const mobileRegex = /^\d{10}$/;
     if (!formData.mobile.trim()) {
       newErrors.mobile = 'Mobile number is required';
@@ -73,7 +68,7 @@ const ContactForm = ({
         mobile: formData.mobile.replace(/\D/g, ''),
         address: formData.address.trim(),
       });
-      // Reset form
+
       setFormData({ name: '', email: '', mobile: '', address: '' });
       setErrors({ name: '', email: '', mobile: '' });
     }
@@ -86,7 +81,7 @@ const ContactForm = ({
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    // Clear error when user starts typing
+
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
     }
